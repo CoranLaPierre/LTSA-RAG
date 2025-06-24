@@ -1,71 +1,81 @@
-# RAG Chatbot with Mistral AI
+RAG Assistant for Design System Documentation
+A Retrieval-Augmented Generation (RAG) assistant that helps teams quickly find and understand design system documentation.
 
-A Retrieval-Augmented Generation (RAG) chatbot built with Flask and Mistral AI.
+This project is ideal for product teams, designers, and developers looking to quickly retrieve design guidelines, component usage instructions, accessibility notes, and more—all from one friendly chat interface.
 
-**Created by [Halim Madi](https://www.halimmadi.com)**
+🎯 About
+This application allows you to:
 
-This is a sample project designed for students, workshops, and educational purposes. Feel free to use, modify, and distribute this code as you wish for learning and development.
+Ask questions like “How do I implement a primary button in our design system?”
 
-## About the Creator
+Get back the most relevant information from your design system docs.
 
-- **Website**: [www.halimmadi.com](https://www.halimmadi.com)
-- **Instagram**: [@yalla_halim](https://www.instagram.com/yalla_halim/)
+Save time searching by leveraging vector search and an LLM to summarize and explain.
 
-## Setup
-
+⚙️ Setup Instructions
 1. Clone the repository
-2. Create a virtual environment:
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
-   ```
-3. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-4. Create a `.env` file with your Mistral API key:
-   ```
-   MISTRAL_API_KEY=your_api_key_here
-   ```
-5. Add your text file as `essay.txt` in the project root
+bash
+Copy
+Edit
+git clone https://github.com/your-org/design-system-rag.git
+cd design-system-rag
+2. Create a virtual environment
+bash
+Copy
+Edit
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+3. Install dependencies
+bash
+Copy
+Edit
+pip install -r requirements.txt
+4. Configure environment
+Create a .env file and add your API key:
 
-## Local Development
+ini
+Copy
+Edit
+OPENAI_API_KEY=your_openai_key_here
+(You can easily swap OpenAI for any other LLM you’d like — see config.py for setup options.)
 
-Run the Flask application:
-```bash
+5. Add your design system content
+Put your design system markdown files or exported Confluence docs into the docs/ directory.
+
+💻 Running Locally
+Start the app:
+
+bash
+Copy
+Edit
 python app.py
-```
+Your assistant will be available at http://localhost:5001
 
-The application will be available at `http://localhost:5001`
+☁️ Deploying
+You can deploy this to Vercel or any other platform:
 
-## Deployment to Vercel
+Push your code to GitHub.
 
-1. Push your code to GitHub
-2. Connect your GitHub repository to Vercel
-3. Add your environment variables in the Vercel dashboard:
-   - `MISTRAL_API_KEY`: Your Mistral API key
-4. Deploy!
+Connect your repository to Vercel.
 
-## Environment Variables
+Set OPENAI_API_KEY in the Vercel environment settings.
 
-- `MISTRAL_API_KEY`: Your Mistral AI API key (required)
+Deploy!
 
-## Project Structure
+📂 Project Structure
+bash
+Copy
+Edit
+.
+├── app.py             # Flask application
+├── docs/              # Design system source docs
+├── templates/         # HTML templates
+├── static/            # Static assets
+├── requirements.txt   # Python dependencies
+├── vercel.json        # Vercel config
+├── .env               # Environment variables
+📜 License
+This project is for educational and internal use. Modify and adapt freely for your team’s design systems!
 
-- `app.py`: Main Flask application
-- `templates/`: HTML templates
-- `static/`: Static files (CSS, JS)
-- `essay.txt`: Source text for the RAG system
-- `requirements.txt`: Python dependencies
-- `vercel.json`: Vercel deployment configuration
-
-## Usage and Licensing
-
-This project is provided as a learning resource for students and workshop participants. You are free to:
-
-- Use this code for educational purposes
-- Modify and adapt it for your own projects
-- Share it with others for learning
-- Use it in workshops and tutorials
-
-Feel free to reach out to [Halim Madi](https://www.halimmadi.com) with any questions or feedback! 
+💬 Support
+Questions? Feel free to reach out or open an issue in this repo.
