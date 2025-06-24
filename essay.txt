@@ -1,91 +1,1126 @@
-Retrieval-Augmented Generation: A Comprehensive Analysis of Modern AI Systems
+LTSA Design System Principles 
+These principles guide how we design, build, and maintain consistent, accessible, and scalable digital experiences across LTSA products.
+________________________________________
+Colour Contrast
+We use a colour palette and brand elements that meet or exceed WCAG 2.1 AA accessibility standards.
+All colours are tested for sufficient contrast between text and background.
+Refer to Material Design 3 accessibility guidance for visual and written content.
+________________________________________
+Font Size
+Text is set at a minimum of 12pt to ensure readability and meet accessibility standards across all interfaces.
+________________________________________
+Hyperlinks
+Hyperlinks are styled consistently in blue to ensure clarity and meet accessibility best practices for recognition and legibility.
+________________________________________
+Brightness
+We prioritize readability and accessibility in bright UI environments.
+We do not design for dark mode but optimize components for dark backgrounds when necessary.
+________________________________________
+Efficiency & Simplicity
+We aim for simple, intuitive, and efficient design and implementation.
+Built using Angular, Angular Material, and MUI3 guidelines (unless otherwise specified).
+Components follow an 8dp spacing grid and Angular Material token system.
+We provide clear, easy-to-follow structure and guidance.
+________________________________________
+Consistency & Accuracy
+Design patterns and components are standardized and shared across products.
+We reuse resolved design patterns and apply a consistent design language.
+Branding and visual identity are aligned across all LTSA products.
+________________________________________
+Reusability & Modularity
+We design with modularity in mind to promote reuse and maintainability.
+Components and tokens are composable, adaptable, and version-controlled.
+Shared solutions reduce duplication and speed up delivery.
+________________________________________
+Scalability
+Our system is built to grow alongside our products and teams.
+Architecture and documentation anticipate future product, platform, and team needs.
+Changes are governed to balance stability and evolution.
+________________________________________
+Collaboration & Contribution
+The design system is a shared asset, shaped by the teams who use it.
+We support contribution through clear processes and decision-making frameworks.
+Designers, developers, and product owners are encouraged to propose improvements.
+________________________________________
+Clarity & Guidance
+Every component is backed by thorough, practical guidance.
+We provide examples, usage do’s and don’ts, and rationale—not just specifications.
+Documentation is written for both designers and developers.
+Alignment with Policy & Compliance
+Our design system supports regulatory, legal, and organizational standards.
+Accessibility, data handling, and policy requirements are embedded in design decisions.
+We build trust through compliance, transparency, and integrity.
+________________________________________
+Transparency
+We make our design decisions, documentation, and assets accessible across teams.
+Guidelines are clearly documented and easy to find.
+Visual and code-based examples are available to all roles involved in implementation.
+________________________________________
 
-Introduction
+Accessibility
+ aim for AA standard 
+Colour contrast Accessibility Plugin
+o	
+o	 Figma: 
+Efficiency & Simplicity
+We use Angular and Angular-Material framework and MUI3 guidelines unless specified otherwise.
+We use 8dp (px) baseline grid principle for spatial elements
+We aim for simple, easy to understand guidelines and structure
+We use A-Material token system
+Consistency & Accuracy
+Aim for reusing and documenting resolved patterns across products
+We use same design principles across products
+We use same Branding Elements across LTSA products
+Transparency 
+we document and share guidelines, know-how and documentation across teams
+component examples has to be accesible to designers and product teams both visually and in code
+o	We do design handoff to development using Figma
+o	Design specifications are in Figma
+o	Code showcase is in Storybook
+o	Confluence serves as design system platform that all documentation links to and is widelly accessible
+Brightness
+we are aiming for best reading experience and accessibility
+we don’t design for dark mode but optimize for dark background
+How to:
 
-Retrieval-Augmented Generation (RAG) represents a paradigm shift in artificial intelligence, combining the power of large language models with external knowledge retrieval to create more accurate, factual, and contextually relevant responses. This hybrid approach addresses one of the fundamental limitations of traditional language models: their static knowledge cutoff and inability to access real-time or domain-specific information. RAG systems have emerged as a critical solution for applications requiring up-to-date information, factual accuracy, and domain expertise.
+Icons
+________________________________________
+LTSA design system SVG icon library 
+o	For Designers:
+Available icons: 
+	Guidelines:
+	How to use this library in Figma:
+o	Icon Intake Process
+For developers : 
+o	Importing and using icons
+o	Adding new icons 
+	Module
+	Component Usage
+o	Accessibility: 
+	Decorative icons
+	Interactive icons
+	Indicator icons
+	Common Resources
+________________________________________
+LTSA design system SVG icon library
+ For Designers:
+As mentioned in:  
+In thinking about accessibility, it is useful to place icon use into one of three categories:
+1.	Decorative: the icon conveys no real semantic meaning and is purely cosmetic.
+2.	Interactive (has a function): a user will click or otherwise interact with the icon to perform some action.
+3.	Indicator: the icon is not interactive, but it conveys some information, such as a status. This includes using the icon in place of text inside of a larger message
+Available icons:
 
-The fundamental architecture of RAG consists of two primary components: a retrieval system that searches through external knowledge sources and a generation system that produces responses based on both the retrieved information and the model's pre-trained knowledge. This dual approach enables RAG systems to provide more reliable, verifiable, and contextually appropriate responses compared to standalone language models.
+Guidelines:
+Framework: Angular-Material (AM) while following MUI3 guidelines as much as possible
+Default source: Material icons
+custom SVG Credit Card Type icons included
+custom SVG social network icons included (taken from bootstrap and modified)
+Icons have applied "sys/on-surface" .sys variable token as a default color for now
+if you need a placeholder for missing icon: use the circle “radio bttn unchecked”
+this Figma library is the source of truth for all LTSA Icons with AM framework
+you should be able to inspect, preview and download even without Figma dev-mode
+specs:
+o	Match the optical weight and size of text and icon to ensure consistency
+o	Use the same size for your Material Symbols and text
+o	Shift down the baseline of symbols to approximately 11.5% of the text size
+o	Label text provides short descriptions, especially useful for navigation
+o	Symbols of 24dp should have a target size of 48dp by default.
+o	When a mouse and keyboard are the primary input methods, measurements may be condensed to accommodate denser layouts.
+	A 20dp size symbol can use a target size of 40dp.
+ How to use this library in Figma:
+for design in Figma add this LTSA Icons Library to a Figma file as you would a UI library
+this will allow you access and swap icon instances in your file
+ Icon Intake Process
 
-Historical Context and Development
+For developers :
+Importing and using icons
+All icons used in components are imported individually to make sure we only add the svg strings to the bundle that we actually use.
+Icons must be imported into the module that exports the component they are used in.
+Icons are imported and declared using PascalCase and added in the component using kebab-case.
+Adding new icons
+New svg icons must be added to icons/svg folder named with snake_case and export the icon name in CamelCase with svg as the parameter.
+All icons must be exported in the icons/index.ts file.
+//first_page.ts:
+export const FirstPage = `<svg xmlns=" width="24" height="24" viewBox="0 0 24 24" fill="none">
+<path d="M6 18V6H8V18H6ZM17 18L11 12L17 6L18.4 7.4L13.8 12L18.4 16.6L17 18Z" fill="#0F1724"/>
+</svg>`;
+Module
+import { IconModule } from './index';
+import { Instagram, Facebook, Youtube, Linkedin, Help } from '@icons/index;
 
-The concept of combining retrieval with generation in natural language processing has evolved significantly over the past decade. Early approaches focused on simple document retrieval followed by template-based response generation. However, the advent of transformer-based language models and advances in information retrieval techniques have enabled more sophisticated integration between these components.
+const icons = {
+  Instagram, Facebook, Youtube, Linkedin, Help
+};
 
-The term "Retrieval-Augmented Generation" was popularized by Lewis et al. in their 2020 paper, which introduced a framework for combining dense retrieval with sequence-to-sequence generation. This work demonstrated that RAG systems could outperform traditional language models on knowledge-intensive tasks while maintaining fluency and coherence in generated text.
+@NgModule({
+  imports: [
+    IconModule.pick(icons),
+  ],
+})
+Component Usage
+<ds-icon icon="instagram"></ds-icon>
+<ds-icon icon="facebook"></ds-icon>
+<ds-icon icon="youtube"></ds-icon>
+<ds-icon icon="linkedin"></ds-icon>
+<ds-icon icon="help"></ds-icon>
+Accessibility:
 
-Since then, RAG has become increasingly prevalent in commercial applications, with major technology companies implementing RAG-based systems for customer service, content generation, and information retrieval. The approach has proven particularly valuable in domains where accuracy and timeliness are critical, such as healthcare, finance, and legal services.
+Decorative icons
+When the icon is purely cosmetic and conveys no real semantic meaning, the <mat-icon> element is marked with aria-hidden="true".
 
-Architecture and Components
+Interactive icons
+Icons alone are not interactive elements for screen-reader users; when the user would interact with some icon on the page, a more appropriate element should "own" the interaction:
+The <mat-icon> element should be a child of a <button> or <a> element.
+The parent <button> or <a> should either have a meaningful label provided either through direct text content, aria-label, or aria-labelledby.
 
-RAG systems typically employ a three-stage pipeline: indexing, retrieval, and generation. The indexing stage involves processing and storing external knowledge sources in a format optimized for efficient retrieval. This often includes creating dense vector representations of documents using encoder models, which enable semantic similarity searches.
+Indicator icons
+When the presence of an icon communicates some information to the user whether as an indicator or by being inlined into a block of text, that information must also be made available to screen-readers. The most straightforward way to do this is to
+1.	Add a <span> as an adjacent sibling to the <mat-icon> element with text that conveys the same information as the icon.
+2.	Add the cdk-visually-hidden class to the <span>. This will make the message invisible on-screen but still available to screen-reader users.
 
-The retrieval stage identifies the most relevant documents or passages from the knowledge base given a user query. This can be accomplished through various methods, including sparse retrieval (e.g., BM25), dense retrieval using neural encoders, or hybrid approaches that combine multiple retrieval strategies. The retrieved documents are then ranked and filtered to select the most relevant information for the generation stage.
+________________________________________
+Common Resources
+o	Figma Plugin Material symbols: 
+o	 Icons documentation
+o	 Icons documentation
+o	 Figma guide on custom icons
+o	 Icon Grid
 
-The generation stage combines the retrieved information with the user's query to produce a coherent and accurate response. This typically involves a large language model that has been fine-tuned to incorporate external knowledge effectively. The model must learn to balance information from the retrieved documents with its pre-trained knowledge, ensuring that the final response is both factual and contextually appropriate.
+Color
+________________________________________
+Color tokens summary: 
+o	Reference tokens Figma library:
+o	System color tokens Figma UI library:
+Color in Angular material 
+o	What are color roles?
+Color system 
+o	It's like paint-by-number
+o	Essential terms
+o	Map or remap colors on UI elements
+o	Define custom color roles
+For Developers:
+________________________________________
+ Color tokens summary:
+DSystem Tokens Foundation Handoff
+ LTSA color tokens (foundation handoff) palettes 
+o	ref-LTSA-palette / neutral
+o	ref-LTSA-palette / neutral / variant
+o	ref-LTSA-palette / brand / navy
+o	ref-LTSA-palette / brand / green
+o	ref-LTSA-palette / brand / blue
+o	ref-LTSA-palette / extended / red
+o	ref-LTSA-palette / brand / teal
+o	ref-LTSA-palette / extended / orange
+o	ref-LTSA-palette / extended / yellow
+o	ref-LTSA-palette / extended / pink
+o	ref-LTSA-palette / extended / purple
+o	Extended System tokens ("static" color roles)
+Reference tokens Figma library:
+LTSA palette reference tokens moved to
 
-Key Advantages and Benefits
+ System color tokens Figma UI library:
 
-RAG systems offer several significant advantages over traditional language models. First and foremost, they address the knowledge cutoff problem by enabling access to current information. This is particularly important for applications requiring up-to-date data, such as news analysis, financial reporting, or technical documentation.
+:Angular-material: Color in Angular material
 
-Second, RAG systems improve factual accuracy by grounding responses in verifiable sources. This reduces the likelihood of hallucination, a common problem with large language models where they generate plausible but incorrect information. By retrieving relevant documents, RAG systems can provide citations and evidence for their responses, increasing transparency and trustworthiness.
+The theme‘s color determines the component color styles, such as the fill color of checkboxes or ripple color of buttons. It depends on color palettes of varying tones to build a color scheme. Check out the Palettes section to learn about available prebuilt palettes, or how to create custom palettes.
+You can set the color in one of two ways: as a single color palette, or as a color map.
+Single Color Palette
+If you provide a single color palette, Angular Material uses its values for the theme’s primary, secondary, and tertiary colors. The CSS color values will be defined using light-dark CSS color function. Your application styles should define an explicit value declaration for the color-scheme CSS property.
+Color Map
+If you provide a color map, then the tertiary color palette can be configured separately from the primary palette. The tertiary palette can be used to add a distinct accent color to some components.
+:MUI3: What are color roles?
 
-Third, RAG enables domain-specific customization without requiring extensive retraining. Organizations can simply update their knowledge base with relevant documents, allowing the system to provide specialized information without modifying the underlying language model. This makes RAG particularly valuable for enterprise applications where domain expertise is critical.
+Color roles are like the "numbers" in a paint-by-number canvas. They're the connective tissue between elements of the UI and what color goes where.
+Color roles are mapped to Material Components
+You'll use these color roles whether you're using the static baseline scheme or dynamic color. If your product contains custom components, they'll need to be properly mapped to this set of color roles.
+Color roles ensure accessibility
+The color system is built on accessible color pairings. These color pairs provide an accessible minimum 3:1 contrast.
+Color roles are tokenized
+Roles are implemented in design and code through tokens. A design token represents a small, reusable design decision that’s part of a design system's visual style.
+Here are helpful-to-know words you'll see in the names of color roles:
+Surface  A role used for backgrounds and large, low-emphasis areas of the screen.
+Primary, Secondary, Tertiary  Accent color roles used to emphasize or de-emphasize foreground elements.
+Container  Roles used as a fill color for foreground elements like buttons. They should not be used for text or icons.
+On  Roles starting with this term indicate a color for text or icons on top of its paired parent color. For example, on primary is used for text and icons against the primary fill color.
+Variant  Roles ending with this term offer a lower emphasis alternative to its non-variant pair. For example, outline variant is a less emphasized version of the outline color.
+Read more in 
+:MUI3: Color system
 
-Fourth, RAG systems can handle long-form content more effectively than traditional language models, which often have context length limitations. By retrieving relevant passages, RAG can process and synthesize information from documents that exceed the model's maximum input length.
+It's like paint-by-number
+Imagine your product screen as a paint-by-number canvas:
+Each element on the screen has a number
+Each number is assigned a color
+Essential terms
+Color role  Like the "numbers" on a paint-by-number canvas, color roles are assigned to specific UI elements. They have names like primary, on primary, and primary container. The same color role is used for both light and dark themes. See all color roles
+Dynamic color  Dynamic color takes a single color from a user's wallpaper or in-app content and creates an accessible color scheme assigned to elements in the UI. If the user's wallpaper or the in-app content changes, the colors in the UI will change to match.
+Static color  UI colors that don't change based on the user's wallpaper or in-app content. Static colors can be hand-picked or generated in design tools like the Material Theme Builder. Once assigned to their respective color roles and UX elements, the colors remain constant.
+Baseline color  The default static color scheme for Material products. It includes colors for both light and dark themes. See the baseline color scheme
+palettes
+The system then manipulates tone and chroma values to create a tonal palette for each key color.
+assigns tones to color roles
+The algorithm uses accessible color relationships to assign specific tones to the 26  color roles.
+Color roles feed into UI elements
+The 26 standard color roles are already assigned to elements of the UI. When a new source color is picked, the UI dynamically changes color.
+read more in 
+Color customization
+Why
+You may need to apply static colors in your app for brand expression or to communicate semantic meaning, like a green success state. By defining these colors using the Material system, they'll work with existing Material colors and support features like dynamic color and user-controlled contrast.
 
-Applications and Use Cases
+Map or remap colors on UI elements
+You can change a component’s default color mapping, or apply colors to your own custom components.
+ Advanced color mapping 
+Why
+You want to map colors to a custom-built component or change a Material Component’s default color mapping to improve its function (such as visual contrast) or style.
+How
+Choose an appropriate color role based on how the color is used (see color roles) and how well the role supports your intended design expression.
+Define custom color roles
+You can define custom color roles in addition to those already existing in the color scheme. By defining these roles the same way Material does (specifying a reference palette, starting tones, and contrast requirements), these roles can achieve colors more specific to your needs while working seamlessly with features such as user-controlled contrast. 
+More resources:
+For Developers:
 
-RAG systems have found widespread application across numerous domains. In customer service, RAG-powered chatbots can access product documentation, FAQs, and knowledge bases to provide accurate and helpful responses to customer inquiries. This reduces the need for human intervention while improving customer satisfaction through more relevant and accurate information.
+Typography
+________________________________________
+Typography in Angular Material 
+o	Single Font Family Value
+Font Family
+Type Scale
+Baseline Grid
+Accessibility
+Weight
+Case
+LTSA UI library - Typography - documentation in Figma
+For Developers
+________________________________________
+Typography in Angular Material
+The mat.theme ‘s typography determines the text styles used in components, such as the font for dialog titles or menu list items.
+You can set the typography in one of two ways: as a single font family value, or as a typography map.
+Single Font Family Value
+If you provide a font family, Angular Material uses it for all the text in its components. The font weights used in components are set to 700 for bold text, 500 for medium text, and 400 for regular text.
 
-In healthcare, RAG systems can assist medical professionals by retrieving relevant research papers, clinical guidelines, and patient records. This enables more informed decision-making while ensuring that recommendations are based on current medical knowledge and best practices.
+Typeface reference tokens
+Typescale system tokens
+Font Family
+The Google web font, Inter, is used for all external materials including marketing materials, websites, print media, external documents, corporate reporting and external newsletters. 
 
-In legal services, RAG can help lawyers and legal professionals by retrieving relevant case law, statutes, and legal precedents. This accelerates legal research and ensures that legal advice is grounded in current and applicable legal frameworks.
+Type Scale
+Type scale is based on Material’s default type scale.
+To learn more about the latest type guidelines, please visit 
 
-In education, RAG systems can provide personalized tutoring by retrieving relevant educational materials and adapting explanations to individual student needs. This enables more effective learning experiences while ensuring that information is accurate and up-to-date.
+Baseline Grid
+A baseline grid should also play a role in defining your type system. Text in your design should have font sizes and line height that are divisible by 8, or the size of your baseline grid. This improves rhythm and consistent alignment when reading, no matter the length of the text.
 
-In content creation, RAG can assist writers and journalists by retrieving relevant background information, statistics, and source materials. This improves the quality and accuracy of generated content while reducing research time.
+Accessibility
+Minimum font size should be set at 12 point font to meet accessibility standards. 
+Hyperlinks should be in blue, and meet accessibility standards. 
+Weight
+Regular 400 = Body, Headline, Display
+Medium 500 = Label, Button label & Title
+Semibold 600 = Bold body text
+Case
+buttons - Sentence case on buttons (with capitalized proper nouns) = default MUI3 rule
+labels - Sentence case on buttons (with capitalized proper nouns) = default MUI3 rule
 
-Technical Challenges and Limitations
+use Sentence-case as per AM guidelines 
 
-Despite their advantages, RAG systems face several technical challenges that must be addressed for optimal performance. One of the primary challenges is retrieval quality, which directly impacts the accuracy of generated responses. Poor retrieval can lead to irrelevant information being incorporated into responses, reducing overall quality.
+By definition: "Sentence case is, simply put, capitalising the first letter of a sentence and only proper nouns (like people's names and place names) thereafter."
 
-Retrieval quality depends on several factors, including the quality of the knowledge base, the effectiveness of the retrieval model, and the relevance ranking algorithms. Ensuring comprehensive coverage of the target domain while maintaining high-quality, up-to-date information requires significant ongoing effort and resources.
+It is aligned with MUI3
 
-Another challenge is the integration between retrieval and generation components. The retrieved information must be effectively incorporated into the generation process without disrupting the fluency and coherence of the response. This requires careful tuning of the generation model and potentially specialized training approaches.
+ LTSA UI library - Typography - documentation in Figma
 
-Context length limitations remain a challenge, particularly when dealing with long documents or multiple retrieved passages. While RAG can help address this by retrieving relevant portions of documents, there are still practical limits on how much retrieved information can be effectively incorporated into a single response.
+For Developers
 
-Privacy and security concerns also arise when RAG systems access external knowledge sources. Organizations must ensure that sensitive information is properly protected and that access controls are implemented to prevent unauthorized retrieval of confidential data.
+Spacing Elements
+________________________________________
+Shape Scale  to be updated 
+Elevation
+Scrims
+Shadows
+Layout
+Grid
+Touch Targets
+Pointer targets
+Target spacing
+Density
+Width 
+o	Content width:
+o	Form width and form field width:
+LTSA UI Library - Spatial elements
+For Developers
+________________________________________
 
-Evaluation and Metrics
+Shape Scale  to be updated  
 
-Evaluating RAG systems requires a comprehensive approach that considers both retrieval and generation quality. Traditional metrics for information retrieval, such as precision, recall, and mean reciprocal rank, are important for assessing the quality of the retrieval component.
+1.	None 
+2.	Extra small 
+3.	Small 
+4.	Medium 
+5.	Large 
+6.	Extra large 
+7.	Full
+o	
+Baseline shapes
+By default, every component is mapped to one of the seven shape styles:
+Shape style	Component	LTSA UX?
+None 0	Banners 
+Bottom app bars  
+Full-screen dialogs  
+Lists  
+Navigation bars  
+Navigation rails  
+Progress indicators  
+Search view (full-screen)  
+Side sheets (docked)  
+Tabs  
+Top app bars  	 
+Extra small = 4dp	Autocomplete menu  
+Buttons  
+Select menu  
+Snackbars  
+Standard menu  
+Text fields  	 
+Small = 8	Chips  
+Rich tooltip  	 
+Medium = 12	Cards  
+Small FABs	 
+Large = 16	Extended FABs  
+FABs  
+Navigation drawers  	 
+Extra large = 28	Bottom sheets (docked)  
+Dialogs  
+Floating sheets  
+Large FABs  
+Search view (docked)  
+Time picker  
+Time input  	 
+Full =1000	Badge  
+Icon buttons  
+Sliders  
+Switches  
+Search bar  	 
+Elevation
 
-For the generation component, metrics such as BLEU, ROUGE, and BERTScore can be used to evaluate fluency and coherence. However, these metrics may not fully capture the factual accuracy and relevance of RAG-generated responses.
+Each component has a default elevation:
+Resting level	Component	DP Height
+5	(not assigned as resting level)	12dp
+4	(not assigned as resting level)	8dp
+3	FAB
+Extended FAB
+Modal Date Picker
+Docked Date Picker
+Modal Date Input
+Dialog
+Search Bar
+Search View
+Time Picker
+Time Input	6dp  
+2	Autocomplete Menu
+Bottom App Bar
+Dropdown Menu
+Menu
+Navigation Bar
+Select Menu
+Rich Tooltip
+Top App Bar (Scrolled)	3dp  
+1	Assist Chip (Elevated)
+Banner
+Bottom Sheet (Modal)
+Elevated Button
+Elevated Card
+Extended FAB (Lowered)
+FAB (Lowered)
+Filter Chip (Elevated)
+Navigation Drawer (Modal)
+Side Sheet (Modal)
+Slider (Handle)
+Suggestion Chip (Elevated)	1dp  
+0	Assist Chip (Flat)
+Carousel Item
+Filled Button
+Filled Tonal Button 
+Filled Card
+Filter Chip (Flat)
+Full Screen Dialog
+List Item
+Input Chip
+Navigation Rail
+Primary Navigation Tabs
+Secondary Navigation Tabs
+Outlined Card
+Side Sheet (Docked)
+Slider (Track)
+Suggestion Chip (Flat)
+Top App Bar	0dp  
+Scrims
+A scrim can bring focus to specific elements by increasing the visual contrast of a large layered surface. Use the scrim beneath elements like modals and expanded navigation menus.
+Scrims use the scrim color role at an opacity of 32%.
+Shadows
 
-Human evaluation remains crucial for assessing the overall quality of RAG systems. This typically involves human annotators evaluating responses for accuracy, relevance, fluency, and helpfulness. Human evaluation can identify issues that automated metrics may miss, such as subtle factual errors or inappropriate tone.
+When it comes to applying shadows, less is more. The fewer levels in your UI, the more power they have to direct attention and action.
+Layout
+Angular Material use Flexbox 
+o	
+Window size class	(dp)
+Compact	(0-599)
+Medium	(600-839)
+Expanded	(840+)
+Large	(1200-1599)
+Extra-large	(1600+)
+Grid
+We use8dp baseline grid for padding
+o	
+o	
+Touch Targets
+Material Design’s target guidelines can help users who aren’t able to see the screen, or who have difficulty with small touch targets, to tap elements in your app.
+Touch targets are the parts of the screen that respond to user input, extending beyond the visual bounds of an element. For example, an icon may appear to be 24 x 24dp, but the padding surrounding it comprises the full 48 x 48dp touch target.
+For most platforms, consider making touch targets at least 48 x 48dp. A touch target this size results in a physical size of about 9mm, regardless of screen size. The recommended target size for touchscreen elements is 7-10mm. It may be appropriate to use larger touch targets to accommodate a larger spectrum of users.
+Note: iOS recommends 44 x 44dp targets. 
 
-Recent research has also introduced specialized metrics for RAG evaluation, such as faithfulness (measuring how well the response reflects the retrieved information) and answerability (measuring whether the retrieved information is sufficient to answer the query).
+Pointer targets
+Pointer targets are similar to touch targets, but are implemented by motion-tracking pointer devices such as a mouse or a stylus. 
+Consider making pointer targets minimums 44 x 44dp.
 
-Future Directions and Research Opportunities
+Target spacing
+In most cases, targets separated by 8dp of space or more promote balanced information density and usability.
 
-The field of RAG continues to evolve rapidly, with several promising research directions emerging. One area of active research is improving retrieval quality through more sophisticated retrieval models and ranking algorithms. This includes exploring multi-modal retrieval, which can incorporate images, audio, and other media types alongside text.
+Density
+The mat.theme ‘s density value determines the spacing within components, such as how much padding is used around a button’s text or the height of form fields.
+The density value accepts integers from 0 to -5, where 0 is the default spacing and -5 is the most dense and compact layout. Each whole number step down (-1, -2, etc.) reduces the affected sizes by 4px, down to the minimum size necessary for a component to render itself coherently.
+Setting the density below 0 can reduce accessibility and make navigation harder for users of assistive technology.
+Density customizations do not affect components that appear in task-based or pop-up contexts, such as the date picker. The Material Design density guidance explicitly discourages changes to density for such interactions because they don't compete for space in the application's layout.
 
-Another promising direction is the development of more efficient RAG architectures that can handle larger knowledge bases and provide faster response times. This includes research into approximate retrieval methods, caching strategies, and distributed retrieval systems.
+Width
+Content width:
+for long text passages the UX best practice is max width is approx 50-70 letters per row (you can see it as standard on blogs news websites) hence trying to keep the content width that requires reading to approx. 550px
+For tables and other content that is not long, the content width can be specified differently
+Form width and form field width:
+Desktop max. width approx. 456px -> for common input fields (example )?node-id=6623-12319&m=dev
+Mobile (based on the device) max. width approx.: )?node-id=6623-12403&m=dev
+o	Example  Gateway - Design Spec (Ready for Dev)
+o	360px = Iphone 14Pro (compact 4col layout, 16px gutters; padding) 
+o	280px = Iphone SE (compact 4col layout, 16px gutters; padding) 
+o	General rule of thumb: Fields should be as wide as the expected input content 
+E.G. CVC code is never longer than 3 digits
+ LTSA UI Library - Spatial elements
 
-Personalization and adaptation represent another important research area. Future RAG systems may be able to learn user preferences and adapt their retrieval and generation strategies accordingly. This could enable more personalized and contextually appropriate responses.
+For Developers
 
-Integration with other AI technologies, such as reasoning systems and knowledge graphs, could further enhance RAG capabilities. This could enable more sophisticated reasoning about retrieved information and better integration of structured and unstructured knowledge.
+Spacing Elements
+________________________________________
+Shape Scale  to be updated 
+Elevation
+Scrims
+Shadows
+Layout
+Grid
+Touch Targets
+Pointer targets
+Target spacing
+Density
+Width 
+o	Content width:
+o	Form width and form field width:
+LTSA UI Library - Spatial elements
+For Developers
+________________________________________
 
-Ethical considerations and responsible AI development will also be crucial for the future of RAG. This includes addressing issues of bias in retrieval and generation, ensuring transparency in information sources, and developing methods for detecting and mitigating misinformation.
+Shape Scale  to be updated  
 
-Conclusion
+1.	None 
+2.	Extra small 
+3.	Small 
+4.	Medium 
+5.	Large 
+6.	Extra large 
+7.	Full
+o	
+Baseline shapes
+By default, every component is mapped to one of the seven shape styles:
+Shape style	Component	LTSA UX?
+None 0	Banners 
+Bottom app bars  
+Full-screen dialogs  
+Lists  
+Navigation bars  
+Navigation rails  
+Progress indicators  
+Search view (full-screen)  
+Side sheets (docked)  
+Tabs  
+Top app bars  	 
+Extra small = 4dp	Autocomplete menu  
+Buttons  
+Select menu  
+Snackbars  
+Standard menu  
+Text fields  	 
+Small = 8	Chips  
+Rich tooltip  	 
+Medium = 12	Cards  
+Small FABs	 
+Large = 16	Extended FABs  
+FABs  
+Navigation drawers  	 
+Extra large = 28	Bottom sheets (docked)  
+Dialogs  
+Floating sheets  
+Large FABs  
+Search view (docked)  
+Time picker  
+Time input  	 
+Full =1000	Badge  
+Icon buttons  
+Sliders  
+Switches  
+Search bar  	 
+Elevation
 
-Retrieval-Augmented Generation represents a significant advancement in artificial intelligence, offering a practical solution to many of the limitations of traditional language models. By combining the power of large language models with external knowledge retrieval, RAG systems can provide more accurate, factual, and contextually relevant responses.
+Each component has a default elevation:
+Resting level	Component	DP Height
+5	(not assigned as resting level)	12dp
+4	(not assigned as resting level)	8dp
+3	FAB
+Extended FAB
+Modal Date Picker
+Docked Date Picker
+Modal Date Input
+Dialog
+Search Bar
+Search View
+Time Picker
+Time Input	6dp  
+2	Autocomplete Menu
+Bottom App Bar
+Dropdown Menu
+Menu
+Navigation Bar
+Select Menu
+Rich Tooltip
+Top App Bar (Scrolled)	3dp  
+1	Assist Chip (Elevated)
+Banner
+Bottom Sheet (Modal)
+Elevated Button
+Elevated Card
+Extended FAB (Lowered)
+FAB (Lowered)
+Filter Chip (Elevated)
+Navigation Drawer (Modal)
+Side Sheet (Modal)
+Slider (Handle)
+Suggestion Chip (Elevated)	1dp  
+0	Assist Chip (Flat)
+Carousel Item
+Filled Button
+Filled Tonal Button 
+Filled Card
+Filter Chip (Flat)
+Full Screen Dialog
+List Item
+Input Chip
+Navigation Rail
+Primary Navigation Tabs
+Secondary Navigation Tabs
+Outlined Card
+Side Sheet (Docked)
+Slider (Track)
+Suggestion Chip (Flat)
+Top App Bar	0dp  
+Scrims
+A scrim can bring focus to specific elements by increasing the visual contrast of a large layered surface. Use the scrim beneath elements like modals and expanded navigation menus.
+Scrims use the scrim color role at an opacity of 32%.
+Shadows
 
-The widespread adoption of RAG across various domains demonstrates its practical value and potential for impact. However, realizing the full potential of RAG requires addressing technical challenges, developing appropriate evaluation methods, and ensuring responsible deployment.
+When it comes to applying shadows, less is more. The fewer levels in your UI, the more power they have to direct attention and action.
+Layout
+Angular Material use Flexbox 
+o	
+Window size class	(dp)
+Compact	(0-599)
+Medium	(600-839)
+Expanded	(840+)
+Large	(1200-1599)
+Extra-large	(1600+)
+Grid
+We use8dp baseline grid for padding
+o	
+o	
+Touch Targets
+Material Design’s target guidelines can help users who aren’t able to see the screen, or who have difficulty with small touch targets, to tap elements in your app.
+Touch targets are the parts of the screen that respond to user input, extending beyond the visual bounds of an element. For example, an icon may appear to be 24 x 24dp, but the padding surrounding it comprises the full 48 x 48dp touch target.
+For most platforms, consider making touch targets at least 48 x 48dp. A touch target this size results in a physical size of about 9mm, regardless of screen size. The recommended target size for touchscreen elements is 7-10mm. It may be appropriate to use larger touch targets to accommodate a larger spectrum of users.
+Note: iOS recommends 44 x 44dp targets. 
 
-As the field continues to evolve, RAG systems are likely to become increasingly sophisticated and capable. Future developments in retrieval quality, generation integration, and system efficiency will enable new applications and use cases that are currently beyond reach.
+Pointer targets
+Pointer targets are similar to touch targets, but are implemented by motion-tracking pointer devices such as a mouse or a stylus. 
+Consider making pointer targets minimums 44 x 44dp.
 
-The success of RAG also highlights the importance of hybrid approaches in artificial intelligence, where combining multiple techniques can achieve better results than any single approach alone. This lesson is likely to influence the development of other AI systems and applications in the years to come.
+Target spacing
+In most cases, targets separated by 8dp of space or more promote balanced information density and usability.
 
-Ultimately, RAG represents not just a technical innovation but a fundamental shift in how we think about AI systems and their relationship with knowledge. By enabling AI to access and utilize external information effectively, RAG opens new possibilities for creating more intelligent, useful, and trustworthy AI applications that can better serve human needs and goals. 
+Density
+The mat.theme ‘s density value determines the spacing within components, such as how much padding is used around a button’s text or the height of form fields.
+The density value accepts integers from 0 to -5, where 0 is the default spacing and -5 is the most dense and compact layout. Each whole number step down (-1, -2, etc.) reduces the affected sizes by 4px, down to the minimum size necessary for a component to render itself coherently.
+Setting the density below 0 can reduce accessibility and make navigation harder for users of assistive technology.
+Density customizations do not affect components that appear in task-based or pop-up contexts, such as the date picker. The Material Design density guidance explicitly discourages changes to density for such interactions because they don't compete for space in the application's layout.
+
+Width
+Content width:
+for long text passages the UX best practice is max width is approx 50-70 letters per row (you can see it as standard on blogs news websites) hence trying to keep the content width that requires reading to approx. 550px
+For tables and other content that is not long, the content width can be specified differently
+Form width and form field width:
+Desktop max. width approx. 456px -> for common input fields (example )?node-id=6623-12319&m=dev
+Mobile (based on the device) max. width approx.: )?node-id=6623-12403&m=dev
+o	Example  Gateway - Design Spec (Ready for Dev)
+o	360px = Iphone 14Pro (compact 4col layout, 16px gutters; padding) 
+o	280px = Iphone SE (compact 4col layout, 16px gutters; padding) 
+o	General rule of thumb: Fields should be as wide as the expected input content 
+E.G. CVC code is never longer than 3 digits
+ LTSA UI Library - Spatial elements
+
+For Developers
+
+DSystem Tokens Foundation Handoff
+________________________________________
+Core 
+o	Reference tokens for LTSA color Palettes: 
+	ref-LTSA-palette / neutral
+	ref-LTSA-palette / neutral / variant
+	ref-LTSA-palette / brand / navy
+	ref-LTSA-palette / brand / blue
+	ref-LTSA-palette / brand / green
+	ref-LTSA-palette / brand / teal
+	ref-LTSA-palette / extended / red
+	ref-LTSA-palette / extended / orange
+	ref-LTSA-palette / extended / yellow
+	ref-LTSA-palette / extended / pink
+	ref-LTSA-palette / extended / purple
+o	System tokens for LTSA color Palettes: 
+	Extended System tokens ("static" color roles)
+o	Typeface reference tokens
+o	Typescale system tokens
+o	Elevation tokens
+o	Shape tokens 
+	corner
+o	Opacity Tokens
+o	LTSA icon Library
+o	For Developers:
+________________________________________
+Core
+The @angular/material/core package contains common components and services used by multiple other components in the library.
+See the API tab for a listing of components and classes available.
+
+Reference tokens for LTSA color Palettes:
+
+ref-LTSA-palette / neutral
+Reference Token 	Value
+0	000000
+4	06090E
+5	070C12
+6	090E16
+10	0F1724
+12	121C2B
+15	192234
+17	1C273B
+20	212E45
+22	24334C
+24	283753
+25	293956
+30	364763
+35	3F5374
+40	485F84
+50	60779F
+60	96ABCF
+70	C7D8F4
+80	D6E3FA
+87	DBE6FB
+90	DFE9FB
+92	E4EDFC
+94	E8F0FC
+95	EDF3FD
+96	F1F6FE
+98	F6F9FE
+99	FAFCFE
+100	FFFFFF
+ref-LTSA-palette / neutral / variant
+Reference Token 	Value
+0	000000
+10	0F1824
+20	213145
+25	293D56
+30	364A63
+35	3F5774
+40	4D647F
+50	607C9F
+60	96B0CF
+70	C7DBF4
+80	D6E6FA
+90	E5F1FF
+95	F0F7FF
+98	F6FAFE
+99	FAFCFF
+100	FFFFFF
+ref-LTSA-palette / brand / navy
+Reference Token 	Value
+0	000000
+10	181945
+20 - brand	292B67
+25 - Dev purpose only	323571
+30	3Е4189
+35 - Dev purpose only	494C8A
+40	585AAB
+50	7578CD
+60	9699EF
+70	B0B3F8
+80	CACCFF
+90	E0E1FF
+95	F5F6FF
+98 - Dev purpose only	FBF8FF
+99	FAFAFF
+100	FFFFFF
+ref-LTSA-palette / brand / blue
+Reference Token 	Value
+0	000000
+10	00164D
+20	00287B
+30	0F3EA6
+40	3257BF
+50	4467CF
+60	6D8FF3
+70	90ACFE
+80	A8BEFF
+90	CBD8FF
+95	EFF3FF
+99	FAFAFF
+100	FFFFFF
+ref-LTSA-palette / brand / green
+Reference Token 	Value
+0	000000
+10	11330F
+20	174314
+30	1B5018
+40	296D26
+50	368132
+60 - brand	4CA747
+70	61C45B
+80	8DE689
+90	C1FFBD
+95	E7FFE5
+99	F4FFF3
+100	FFFFFF
+ref-LTSA-palette / brand / teal
+Reference Token 	Value
+0	000000
+10	001F24
+20	00363D
+25 - Dev purpose only	004047
+30	004F58
+35 - Dev purpose only	00525A
+40	006874
+50	008391
+60	0C9AAC
+70	00BDD0
+80	22DAF0
+90	97F0FF
+95	D0F8FF
+98 - Dev purpose only	F0FCFF
+99	F6FEFF
+100	FFFFFF
+ref-LTSA-palette / extended / red
+Reference Token 	Value
+0	000000
+10	400100
+20	680300
+30	920500
+40	BF0900
+50	E62917
+60	FF553F
+70	FF8A77
+80	FFB4A7
+90	FFDAD4
+95	FFEDEA
+99	FFFBFF
+100	FFFFFF
+ref-LTSA-palette / extended / orange
+Reference Token 	Value
+0	000000
+10	512200
+20	733100
+30	953F00
+40	A94800
+50	C35200
+60	FA6D05
+70	FB8229
+80	FFB076
+90	FFD7B9
+95	FFF2E9
+99	FFFCFA
+100	FFFFFF
+ref-LTSA-palette / extended / yellow
+Reference Token 	Value
+0	000000
+10	3D3300
+20	574800
+30	6B5900
+40	7F6A00
+50	8A7300
+60	B29500
+70	E5BF00
+80	FFD81A
+90	FFE566
+95	FFF2B3
+99	FFFBE6
+100	FFFFFF
+ref-LTSA-palette / extended / pink
+Reference Token 	Value
+0	000000
+10	460321
+20	680A35
+30	8A154A
+40	AC2462
+50	CE367B
+60	F04C96
+70	FF78B5
+80	FF9FCA
+90	FFC6E0
+95	FFEDF5
+99	FFFAFC
+100	FFFFFF
+ref-LTSA-palette / extended / purple
+Reference Token 	Value
+0	000000
+10	240250
+20	370972
+30	4C1494
+40	6323B6
+50	7C35D8
+60	974BFA
+70	B175FF
+80	C79DFF
+90	DEC5FF
+95	F5EDFF
+99	FCFAFF
+100	FFFFFF
+System tokens for LTSA color Palettes:
+LTSA Scheme
+sys-{Name}	ref-{Value}
+primary	ref-LTSA-palette/brand/navy/20 - brand
+on-primary	ref-LTSA-palette/brand/navy/100
+primary-container	ref-LTSA-palette/brand/navy/95
+on-primary-container	ref-LTSA-palette/brand/navy/10
+secondary	ref-LTSA-palette/brand/blue/50
+on-secondary	ref-LTSA-palette/brand/blue/100
+secondary-container	ref-LTSA-palette/brand/blue/95
+on-secondary-container	ref-LTSA-palette/brand/blue/10
+tertiary	ref-LTSA-palette/brand/teal/50
+on-tertiary	ref-LTSA-palette/brand/teal/100
+tertiary-container	ref-LTSA-palette/brand/teal/95
+on-tertiary-container	ref-LTSA-palette/brand/teal/10
+error	ref-LTSA-palette/extended/red/40
+on-error	ref-LTSA-palette/extended/red/100
+on-error-container	ref-LTSA-palette/extended/red/10
+error-container	ref-LTSA-palette/extended/red/95
+background	ref-LTSA-palette/neutral/100
+on-background	ref-LTSA-palette/neutral/10
+surface	ref-LTSA-palette/neutral/98
+on-surface	ref-LTSA-palette/neutral/10
+surface-variant	ref-LTSA-palette/neutral/variant/90
+on-surface-variant	ref-LTSA-palette/neutral/variant/30
+outline	ref-LTSA-palette/neutral/50
+outline-variant	ref-LTSA-palette/neutral/70
+surface-tint	ref-LTSA-palette/brand/navy/30
+shadow	ref-LTSA-palette/neutral/20
+scrim	ref-LTSA-palette/neutral/10
+inverse-surface	ref-LTSA-palette/neutral/20
+inverse-on-surface	ref-LTSA-palette/neutral/95
+inverse-primary	ref-LTSA-palette/brand/navy/80
+primary-fixed	ref-LTSA-palette/brand/navy/90
+on-primary-fixed	ref-LTSA-palette/brand/navy/10
+primary-fixed-dim	ref-LTSA-palette/brand/navy/80
+on-primary-fixed-variant	ref-LTSA-palette/brand/navy/30
+secondary-fixed	ref-LTSA-palette/brand/blue/90
+on-secondary-fixed	ref-LTSA-palette/brand/blue/10
+secondary-fixed-dim	ref-LTSA-palette/brand/blue/80
+on-secondary-fixed-variar	ref-LTSA-palette/brand/blue/30
+tertiary-fixed	ref-LTSA-palette/extended/teal/90
+on-tertiary-fixed	ref-LTSA-palette/extended/teal/10
+tertiary-fixed-dim	ref-LTSA-palette/extended/teal/80
+on-tertiary-fixed-variant	ref-LTSA-palette/extended/teal/30
+surface-dim	ref-LTSA-palette/neutral/96
+surface-bright	ref-LTSA-palette/neutral/100
+surface-container-lowest-	ref-LTSA-palette/neutral/100
+surface-container-low-em	ref-LTSA-palette/neutral/96
+surface-container	ref-LTSA-palette/neutral/94
+surface-container-high-en	ref-LTSA-palette/neutral/92
+surface-container-highest	ref-LTSA-palette/neutral/90
+Extended System tokens ("static" color roles)
+
+sys-{Name}	ref-{Value}
+Success	ref-LTSA-palette/brand/green/50
+On Success	ref-LTSA-palette/brand/green/100
+Success Container	ref-LTSA-palette/brand/green/95
+On Success Container	ref-LTSA-palette/brand/green/10
+Warning	ref-LTSA-palette/extended/orange/50
+On Warning	ref-LTSA-palette/extended/orange/100
+Warning Container	ref-LTSA-palette/extended/orange/95
+On Warning Container	ref-LTSA-palette/extended/orange/10
+Yellow	ref-LTSA-palette/extended/yellow/40
+On Yellow	ref-LTSA-palette/extended/yellow/100
+Yellow Container	ref-LTSA-palette/extended/yellow/95
+On Yellow Container	ref-LTSA-palette/extended/yellow/10
+Purple	ref-LTSA-palette/extended/purple/40
+On Purple	ref-LTSA-palette/extended/purple/100
+Purple Container	ref-LTSA-palette/extended/purple/95
+On Purple Container	ref-LTSA-palette/extended/purple/10
+Pink	ref-LTSA-palette/extended/pink/40
+On Pink	ref-LTSA-palette/extended/pink/100
+Pink Container	ref-LTSA-palette/extended/pink/95
+On Pink Container	ref-LTSA-palette/extended/pink/10
+________________________________________
+Typeface reference tokens
+
+Font Family 
+Ref	Value
+Brand	Inter
+Plain	Inter
+Weight
+Ref	Value	(alias)
+Regular	Regular	400
+Medium	Medium	500
+Bold	SemiBold	600
+Typescale system tokens
+sys-{Name}	ref-{Value}	Value Alias
+Display Large	
+Font	Brand	Inter
+Weight	Weight/Regular	400
+Size	56px	
+Line Height	64px	
+Tracking (letter-spacing)	-0.25px	
+Display Medium	
+Font	Brand	Inter
+Weight	Weight/Regular	400
+Size	44px	
+Line Height	52px	
+Tracking (letter-spacing)	0px	
+Display Small	
+Font	Brand	Inter
+Weight	Weight/Regular	400
+Size	36px	
+Line Height	44px	
+Tracking (letter-spacing)	0px	
+Headline Large	
+Font	Brand	Inter
+Weight	Weight/Regular	400
+Size	32px	
+Line Height	40px	
+Tracking (letter-spacing)	0px	
+Headline Medium	
+Font	Brand	Inter
+Weight	Weight/Regular	400
+Size	28px	
+Line Height	36px	
+Tracking (letter-spacing)	0px	
+Headline Small	
+Font	Brand	Inter
+Weight	Weight/Regular	400
+Size	24px	
+Line Height	32px	
+Tracking (letter-spacing)	0px	
+Title Large	
+Font	Brand	Inter
+Weight	Weight/Medium	500
+Size	22px	
+Line Height	28px	
+Tracking (letter-spacing)	0px	
+Title Medium	
+Font	Brand	Inter
+Weight	Weight/Medium	500
+Size	16px	
+Line Height	24px	
+Tracking (letter-spacing)	0.15px	
+Title Small	
+Font	Brand	Inter
+Weight	Weight/Medium	500
+Size	14px	
+Line Height	20px	
+Tracking (letter-spacing)	0.1px	
+Label Large	
+Font	Plain	Inter
+Weight	Weight/Medium	500
+Size	16px	
+Line Height	24px	
+Tracking (letter-spacing)	0.4px	
+Label Medium	
+Font	Plain	Inter
+Weight	Weight/Medium	500
+Size	14px	
+Line Height	20px	
+Tracking (letter-spacing)	0.1px	
+Label Small	
+Font	Plain	Inter
+Weight	Weight/Medium	500
+Size	12px	
+Line Height	16px	
+Tracking (letter-spacing)	0.5px	
+Body Large	
+Font	Plain	Inter
+Weight	Weight/Regular	400
+Size	16px	
+Line Height	24px	
+Tracking (letter-spacing)	0.5px	
+Body Medium	
+Font	Plain	Inter
+Weight	Weight/Regular	400
+Size	14px	
+Line Height	20px	
+Tracking (letter-spacing)	0.25px	
+Body Small	
+Font	Plain	Inter
+Weight	Weight/Regular	400
+Size	12px	
+Line Height	16px	
+Tracking (letter-spacing)	0.4px	
+________________________________________
+Elevation tokens
+
+Token	Height	Storybook	Figma elevation level (used style)
+( )
+DP ( )
+.elevation-level	Style	
+level0	0dp	0	box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);	-
+level1	1dp	1	box-shadow: 0px 1px 2px 0px rgba(33, 46, 69, 0.3), 0px 1px 3px 1px rgba(33, 46, 69, 0.15);	 aligned
+level2	3dp	2	box-shadow: 0px 1px 2px 0px rgba(33, 46, 69, 0.3), 0px 2px 6px 2px rgba(33, 46, 69, 0.15);	 aligned
+level3	6dp	3	box-shadow: 0px 4px 8px 3px rgba(33, 46, 69, 0.15), 0px 1px 3px 0px rgba(33, 46, 69, 0.3);	 aligned
+level4	8dp	4	box-shadow: 0px 6px 10px 4px rgba(33, 46, 69, 0.15), 0px 2px 3px 0px rgba(33, 46, 69, 0.3);	 aligned
+level5	12dp	5	box-shadow: 0px 8px 12px 6px rgba(33, 46, 69, 0.15), 0px 4px 4px 0px rgba(33, 46, 69, 0.3);	 aligned
+Shape tokens
+
+corner
+Token  corner.
+Value dp	Storybook	Figma variables 
+none	0	border-radius: 0;	 aligned
+extra-small	4	border-radius: 4px;	 aligned
+small	8	border-radius: 8px;	 aligned
+medium	12	border-radius: 12px;	 aligned
+large	16	border-radius: 16px;	 aligned
+extra-large	28	border-radius: 28px;	 aligned
+full	1000	border-radius: 1000px;	 aligned
+More Spacing details:
+- clarify breakpoints
+________________________________________
+Opacity Tokens
+used:
+state layers 
+scrim (overlay) 
+disabled state: E.G. Outlined text field disabled label text opacity
+Name	Value	Usage	Storybook	Figma variables 
+opacity-8	8	Hover state	opacity: 0.08;	 aligned
+opacity-12	12	Pressed state	opacity	 aligned
+opacity-16	16	Dragged state	opacity: 0.16;	 aligned
+opacity-32	32	scrim: scrim color role with 32%	opacity: 0.32;	 aligned
+opacity-38	38	disabled state: E.G. Outlined text field: on-surface + disabled label text opacity 38%	opacity: 0.38;	 aligned
+________________________________________
+ LTSA icon Library
+
+For Developers:
